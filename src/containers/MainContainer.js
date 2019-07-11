@@ -3,7 +3,7 @@ import { Container, Grid, Button} from '@material-ui/core';
 import { OUTCOME, SPECIES } from '../constants/ApiNaming';
 
 import TopBar from '../components/TopBar';
-import Chart from '../components/Chart';
+import ChartContainer from '../components/Chart';
 import OutcomeInput from '../components/OutcomeInput';
 import SpeciesInput from '../components/SpeciesInput';
 
@@ -27,9 +27,7 @@ export default function (props) {
             <Button variant="contained" onClick={props.fetchData}>Fetch</Button>
           </Grid>
           <Grid item xs={9}>
-            {props.data.length > 0 &&
-              <Chart data={props.data} />
-            }
+              <ChartContainer fetch={props.fetchData} data={props.data} />
           </Grid>
         </Grid>
       </Container>

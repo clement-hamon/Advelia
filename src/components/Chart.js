@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
 } from 'recharts';
 
-export default function Chart(props) {
+function Chart(props) {
   return (
     <BarChart
       width={500}
@@ -21,4 +21,14 @@ export default function Chart(props) {
       <Bar dataKey="count" fill="#8884d8" />
     </BarChart>
   );
+}
+
+export default class ChartContainer extends Component{
+    componentDidMount(){
+      this.props.fetch();
+    }
+
+    render(){
+      return (<Chart {...this.props}/>)
+    }
 }
