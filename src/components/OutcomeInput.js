@@ -16,7 +16,8 @@ export default function (props) {
                     onChange={(e) => onChange(OUTCOME, e.target.value)}
                 >
                     <FormControlLabel value="OnGoing" control={<Radio />} label="OnGoing" />
-                    <FormControlLabel value="Normal" control={<Radio />} label="Normal" />
+                    <FormControlLabel value="Recovered" control={<Radio />} label="Recovered" />
+                    <FormControlLabel value="Euthanized" control={<Radio />} label="Euthanized" />
                     <FormControlLabel value="Died" control={<Radio />} label="Died" />
                 </RadioGroup>
             </FormControl>

@@ -3,7 +3,7 @@ import { Container, Grid, Button} from '@material-ui/core';
 import { OUTCOME, SPECIES } from '../constants/ApiNaming';
 
 import TopBar from '../components/TopBar';
-import ChartContainer from '../components/Chart';
+import ChartContainer from './ChartContainer';
 import OutcomeInput from '../components/OutcomeInput';
 import SpeciesInput from '../components/SpeciesInput';
 
