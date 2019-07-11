@@ -1,8 +1,9 @@
 import React from 'react';
 import { FormControlLabel, RadioGroup, FormLabel, FormControl, Radio } from '@material-ui/core';
+import {OUTCOME} from '../constants/ApiNaming';
 
 export default function (props) {
-    const { handleChangeSearch, outcomeCriteria } = props;
+    const { onChange, selected } = props;
 
     return (
         <div>
@@ -11,8 +12,8 @@ export default function (props) {
                 <RadioGroup
                     aria-label="Outcome"
                     name="Outcome"
-                    value={outcomeCriteria}
-                    onChange={(e) => handleChangeSearch("outcome.medical_status", e.target.value)}
+                    value={selected}
+                    onChange={(e) => onChange(OUTCOME, e.target.value)}
                 >
                     <FormControlLabel value="OnGoing" control={<Radio />} label="OnGoing" />
                     <FormControlLabel value="Normal" control={<Radio />} label="Normal" />
