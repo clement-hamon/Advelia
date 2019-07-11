@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Grid, Button} from '@material-ui/core';
+import { Container, Grid } from '@material-ui/core';
 import { OUTCOME, SPECIES } from '../constants/ApiNaming';
 
 import TopBar from '../components/TopBar';
@@ -23,8 +23,7 @@ export default function (props) {
         <Grid container spacing={3}>
           <Grid item xs={3}>
             <SpeciesInput selected={species ? species.value : null} onChange={props.changeSearchCriterion}/>
-            <OutcomeInput selected={outcome ? outcome.value : null} onChange={props.changeSearchCriterion} />
-            <Button variant="contained" onClick={props.fetchData}>Fetch</Button>
+            <OutcomeInput selected={outcome ? outcome.value : null} onChange={props.changeSearchCriterion}/>
           </Grid>
           <Grid item xs={9}>
               <ChartContainer fetch={props.fetchData} data={props.data} />

@@ -27,6 +27,8 @@ export const changeSearchCriterion = (key, value) => (dispatch, getState) => {
     }
   
     dispatch(changeSearch( [...prevSearchCriterion, {key, value}] ));
+    // trigger fetch everytime input change
+    fetchData()(dispatch, getState);
 };
 
 export const fetchData = () => (dispatch, getState) => {
