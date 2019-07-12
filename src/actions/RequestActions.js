@@ -34,7 +34,7 @@ export const changeSearchCriterion = (key, value) => (dispatch, getState) => {
 export const fetchData = () => (dispatch, getState) => {
   const {baseUrl, searchCriterion, countCriteria, sortBy} = getRequest(getState());
   const url = urlBuilder(baseUrl, searchCriterion, countCriteria, sortBy);
-
+  console.log(url);
   fetch(url).then(function(response) {
     return response.json();
   })
