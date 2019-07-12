@@ -5,7 +5,6 @@ technology/SaaS?
 
 Yes. Sure Elastic Search is great as it gives the front-end team some flexibility upon the request being made, such as conditions, counting, sorting, etc... But still the font-end code is tightly couple with the way data are presented by the API.
 
-
 B. Which technology would you use to recreate such an API without using Elastic Search?
 
 A technology like GraphQl would give full control to the front-end team on how the data from the API are presented.
