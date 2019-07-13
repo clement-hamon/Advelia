@@ -1,9 +1,10 @@
 import React from 'react';
-import { Container, Grid, Paper } from '@material-ui/core';
+import { Container, Grid, Paper, Typography } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/styles';
 
 import { OUTCOME, SPECIES } from '../constants/ApiNaming';
+import { sortByParam, findByParam } from '../utils'
 
 import TopBar from '../components/TopBar';
 import ChartContainer from './ChartContainer';
@@ -12,40 +13,39 @@ import SpeciesInput from '../components/SpeciesInput';
 
 const styles = theme => ({
   container: {
-    marginTop: '50px',
-  }
+    marginTop: '50px'
+  },
+  paper: {
+    textAlign: 'center',
+    padding: '20px'
+  },
 });
 
 function MainContainer(props) {
 
-  function findSearchCriteria(key) {
-    return props.searchCriterion.find(c => c.key === key);
-  }
+  const {classes, data, searchCriterion} = props;
 
-  const outcome = findSearchCriteria(OUTCOME);
-  const species = findSearchCriteria(SPECIES);
+  const outcome = findByParam(searchCriterion, 'key', OUTCOME);
+  const species = findByParam(searchCriterion, 'key', SPECIES);
 
   return (
-    <div >
+    <React.Fragment>
       <TopBar />
-      <Container className={props.classes.container}>
+      <Container className={classes.container}>
         <Grid container spacing={3}>
-          <Grid item xs={3}>
+          <Grid item md={3} sm={12}>
             <SpeciesInput selected={species ? species.value : null} onChange={props.changeSearchCriterion} />
             <OutcomeInput selected={outcome ? outcome.value : null} onChange={props.changeSearchCriterion} />
           </Grid>
-          <Grid item xs={9}>
-            <Grid container spacing={0}>
-              <Grid item xs={12}>
-                <Paper>
-                  <ChartContainer fetch={props.fetchData} data={props.data} />
+          <Grid item md={9} sm={12}>
+                <Paper className={classes.paper}>
+                  <Typography variant="h5">The number of animal's outcome compared to treatment length.</Typography>
+                  <ChartContainer height={400} width={800} fetch={props.fetchData} data={sortByParam(data, 'term')} />
                 </Paper>
-              </Grid>
-            </Grid>
           </Grid>
         </Grid>
       </Container>
-    </div >
+    </React.Fragment>
   );
 }
 

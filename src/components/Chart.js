@@ -2,13 +2,15 @@ import React from 'react';
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
 } from 'recharts';
+// import { Typography } from '@material-ui/core';
 
 export default function Chart(props) {
+  const {data, width, height} = props;
   return (
     <BarChart
-      width={500}
-      height={300}
-      data={props.data}
+      width={width}
+      height={height}
+      data={data}
       margin={{
         top: 5, right: 30, left: 20, bottom: 5,
       }}
@@ -18,7 +20,7 @@ export default function Chart(props) {
       <YAxis />
       <Tooltip />
       <Legend />
-      <Bar dataKey="count" fill="#8884d8" />
+      <Bar dataKey="count" fill="#82ca9d" />
     </BarChart>
   );
 }
