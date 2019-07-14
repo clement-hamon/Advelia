@@ -37,11 +37,6 @@ function MainContainer(props) {
       <TopBar />
       <Container className={classes.container}>
         <Grid container spacing={3}>
-          <Grid item xs={12}>
-            <Paper className={classes.paper}>
-              <SpeciesInput selected={species ? species.value : null} onChange={props.changeSearchCriterion} />
-            </Paper>
-          </Grid>
           <Grid item md={3} sm={12}>
             <Paper className={classes.paper}>
               <OutcomeInput selected={outcome ? outcome.value : null} onChange={props.changeSearchCriterion} />
@@ -49,7 +44,7 @@ function MainContainer(props) {
           </Grid>
           <Grid item md={9} sm={12}>
             <Paper className={`${classes.paper} ${classes.display}`}>
-              <Typography variant="h5">The number of animal's outcome compared to treatment length.</Typography>
+              <Typography variant="h6">The number of <SpeciesInput selected={species ? species.value : null} onChange={props.changeSearchCriterion} />'s outcome compared to treatment length</Typography>
               <ChartContainer height={400} width={800} fetch={props.fetchData} data={sortByParam(data, 'term')} />
             </Paper>
           </Grid>

@@ -1,30 +1,33 @@
 import React from 'react';
-import { FormControlLabel, FormGroup, Checkbox } from '@material-ui/core';
-import {SPECIES} from '../constants/ApiNaming';
+import { Select, MenuItem } from '@material-ui/core';
+import { withStyles } from '@material-ui/styles';
 
-function SpeciesFormCheckBox(props){
-    const {species, selected, onChange} = props;
+import { SPECIES, ANIMALS_LIST } from '../constants/ApiNaming';
+
+
+const styles = theme => ({
+    title: {
+      verticalAlign: 'bottom'
+    }
+  });
+
+function SpeciesInput(props) {
+    const { onChange, selected, classes } = props;
     return (
-        <FormControlLabel
-        control={
-            <Checkbox
-                checked={selected === species}
-                onChange={(e) => onChange(SPECIES, e.target.value)}
-                value={species}
-                color="primary"
-            />
-        }
-        label={species}
-    />
+        <Select
+            value={selected}
+            className={classes.title}
+            onChange={(e) => onChange(SPECIES, e.target.value)}
+            inputProps={{
+                name: 'name',
+                id: 'species',
+            }}
+        >
+            {ANIMALS_LIST.map((name, i) => (
+                <MenuItem value={name}>{name}</MenuItem>
+            ))}
+        </Select>
     )
 }
 
-export default function (props) {
-    const {onChange, selected} = props;
-    return (
-        <FormGroup row>
-            <SpeciesFormCheckBox species="Cat" selected={selected} onChange={onChange}/>
-            <SpeciesFormCheckBox species="Dog" selected={selected} onChange={onChange}/>
-        </FormGroup>
-    )
-}
+export default withStyles(styles)(SpeciesInput);
