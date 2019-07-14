@@ -3,17 +3,16 @@ import * as types from '../constants/ActionTypes';
 const initialState = {
   baseUrl: 'https://api.fda.gov/animalandveterinary/event.json?',
   searchCriterion: [
-    {key: 'outcome.medical_status', value :"Died"},
-    {key: 'animal.species', value :"Cat"},
-    {key: 'animal.breed.is_crossbred', value : false},
-
+    { key: 'outcome.medical_status', value: "Died" },
+    { key: 'animal.species', value: "Cat" },
+    { key: 'animal.breed.is_crossbred', value: false },
   ],
   countCriteria: "duration.value",
   url: '',
   data: []
 };
 
-export default (state = initialState, {type, payload}) => {
+export default (state = initialState, { type, payload }) => {
   switch (type) {
     case types.CHANGE_SEARCH_CRITERION:
       return {
