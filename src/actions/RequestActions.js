@@ -23,10 +23,10 @@ export const changeSearchCriterion = (key, value) => (dispatch, getState) => {
     const index = searchCriterion.findIndex(c => c.key === key);
     
     if(index > -1){
-      prevSearchCriterion.splice(index, index + 1);
+      prevSearchCriterion.splice(index, 1);
     }
-  
-    dispatch(changeSearch( [...prevSearchCriterion, {key, value}] ));
+    const newSearchCriterion = [...prevSearchCriterion, {key, value}];
+    dispatch(changeSearch( newSearchCriterion ));
     // trigger fetch everytime input change
     fetchData()(dispatch, getState);
 };
@@ -34,7 +34,7 @@ export const changeSearchCriterion = (key, value) => (dispatch, getState) => {
 export const fetchData = () => (dispatch, getState) => {
   const {baseUrl, searchCriterion, countCriteria, sortBy} = getRequest(getState());
   const url = urlBuilder(baseUrl, searchCriterion, countCriteria, sortBy);
-  console.log(url);
+
   fetch(url).then(function(response) {
     return response.json();
   })

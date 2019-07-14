@@ -6,7 +6,7 @@ export default function (props) {
 
     return (
         <div>
-            <FormControl component="fieldset">
+            <FormControl className={"inputRadio"} component="fieldset">
                 <FormLabel component="legend">{title}</FormLabel>
                 <RadioGroup
                     aria-label={title}

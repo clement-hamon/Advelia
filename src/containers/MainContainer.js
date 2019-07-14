@@ -45,7 +45,7 @@ function MainContainer(props) {
               <InputRadio
                 selected={outcome ? outcome.value : null}
                 onChange={props.changeSearchCriterion}
-                title={'Outcome'}
+                title={'Treatment Outcome'}
                 labels={['OnGoing', 'Recovered', 'Euthanized', 'Died']}
                 routeLabel={OUTCOME}
               />
