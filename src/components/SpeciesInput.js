@@ -24,7 +24,7 @@ function SpeciesInput(props) {
             }}
         >
             {ANIMALS_LIST.map((name, i) => (
-                <MenuItem value={name}>{name}</MenuItem>
+                <MenuItem key={i} value={name}>{name}</MenuItem>
             ))}
         </Select>
     )
