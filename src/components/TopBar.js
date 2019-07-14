@@ -21,13 +21,13 @@ const styles = theme => ({
 
 
 function TopBar(props) {
-  const {classes} = props;
+  const {classes, title} = props;
   return (
     <AppBar position="static" className={classes.appBar}>
       <Toolbar className={classes.container}>
         <img className={classes.logo} src={advelia} alt="Logo" />
         <Typography variant="h3" color="inherit" className={classes.title}>
-          Advelia
+          {title}
         </Typography>
       </Toolbar>
     </AppBar>

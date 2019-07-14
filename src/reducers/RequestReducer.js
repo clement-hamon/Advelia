@@ -4,7 +4,9 @@ const initialState = {
   baseUrl: 'https://api.fda.gov/animalandveterinary/event.json?',
   searchCriterion: [
     {key: 'outcome.medical_status', value :"Died"},
-    {key: 'animal.species', value :"Cat"}
+    {key: 'animal.species', value :"Cat"},
+    {key: 'animal.breed.is_crossbred', value : false},
+
   ],
   countCriteria: "duration.value",
   url: '',
