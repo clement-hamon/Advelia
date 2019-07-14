@@ -10,16 +10,20 @@ const styles = theme => ({
   },
   container: {
     grow: 1
+  },
+  title: {
+    marginLeft: '15px'
   }
 });
 
 
 function TopBar(props) {
+  const {classes} = props;
   return (
     <AppBar position="static" color="primary">
-      <Toolbar className={props.classes.container}>
-        <img className={props.classes.logo} src={advelia} alt="Logo" />
-        <Typography variant="h3" color="inherit">
+      <Toolbar className={classes.container}>
+        <img className={classes.logo} src={advelia} alt="Logo" />
+        <Typography variant="h3" color="inherit" className={classes.title}>
           Advelia
         </Typography>
       </Toolbar>

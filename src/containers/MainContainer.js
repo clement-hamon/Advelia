@@ -13,17 +13,21 @@ import SpeciesInput from '../components/SpeciesInput';
 
 const styles = theme => ({
   container: {
-    marginTop: '50px'
+    marginTop: '20px'
   },
   paper: {
     textAlign: 'center',
-    padding: '20px'
+    padding: '20px 0 40px 0',
   },
+  display: {
+    minHeight: '400px',
+    height: '400px'
+  }
 });
 
 function MainContainer(props) {
 
-  const {classes, data, searchCriterion} = props;
+  const { classes, data, searchCriterion } = props;
 
   const outcome = findByParam(searchCriterion, 'key', OUTCOME);
   const species = findByParam(searchCriterion, 'key', SPECIES);
@@ -33,15 +37,21 @@ function MainContainer(props) {
       <TopBar />
       <Container className={classes.container}>
         <Grid container spacing={3}>
+          <Grid item xs={12}>
+            <Paper className={classes.paper}>
+              <SpeciesInput selected={species ? species.value : null} onChange={props.changeSearchCriterion} />
+            </Paper>
+          </Grid>
           <Grid item md={3} sm={12}>
-            <SpeciesInput selected={species ? species.value : null} onChange={props.changeSearchCriterion} />
-            <OutcomeInput selected={outcome ? outcome.value : null} onChange={props.changeSearchCriterion} />
+            <Paper className={classes.paper}>
+              <OutcomeInput selected={outcome ? outcome.value : null} onChange={props.changeSearchCriterion} />
+            </Paper>
           </Grid>
           <Grid item md={9} sm={12}>
-                <Paper className={classes.paper}>
-                  <Typography variant="h5">The number of animal's outcome compared to treatment length.</Typography>
-                  <ChartContainer height={400} width={800} fetch={props.fetchData} data={sortByParam(data, 'term')} />
-                </Paper>
+            <Paper className={`${classes.paper} ${classes.display}`}>
+              <Typography variant="h5">The number of animal's outcome compared to treatment length.</Typography>
+              <ChartContainer height={400} width={800} fetch={props.fetchData} data={sortByParam(data, 'term')} />
+            </Paper>
           </Grid>
         </Grid>
       </Container>
