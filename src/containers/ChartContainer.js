@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { CircularProgress } from '@material-ui/core';
 
-import Chart from '../components/Chart';
+import DisplayChart from '../components/DisplayChart';
 
 export default class ChartContainer extends Component{
     componentDidMount(){
@@ -10,7 +10,7 @@ export default class ChartContainer extends Component{
 
     render(){
       if(this.props.data.length > 0){
-        return (<Chart {...this.props}/>)
+        return (<DisplayChart {...this.props}/>)
       } else {
         return (<CircularProgress />)
       }

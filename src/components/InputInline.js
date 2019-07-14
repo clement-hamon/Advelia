@@ -1,9 +1,6 @@
 import React from 'react';
-import { Select, MenuItem } from '@material-ui/core';
+import { Typography, Select, MenuItem  } from '@material-ui/core';
 import { withStyles } from '@material-ui/styles';
-
-import { SPECIES, ANIMALS_LIST } from '../constants/ApiNaming';
-
 
 const styles = theme => ({
     title: {
@@ -11,23 +8,28 @@ const styles = theme => ({
     }
   });
 
-function SpeciesInput(props) {
-    const { onChange, selected, classes } = props;
+function InputInline(props){
+    const {variant, beforeText, afterText, classes, routeLabel ,selected, onChange, options} = props;
     return (
+        <Typography variant={variant}>
+        {beforeText} 
         <Select
             value={selected}
             className={classes.title}
-            onChange={(e) => onChange(SPECIES, e.target.value)}
+            onChange={(e) => onChange(routeLabel, e.target.value)}
             inputProps={{
                 name: 'name',
                 id: 'species',
             }}
         >
-            {ANIMALS_LIST.map((name, i) => (
+            {options.map((name, i) => (
                 <MenuItem key={i} value={name}>{name}</MenuItem>
             ))}
         </Select>
+        {afterText}
+        </Typography>
     )
 }
 
-export default withStyles(styles)(SpeciesInput);
+
+export default withStyles(styles)(InputInline);

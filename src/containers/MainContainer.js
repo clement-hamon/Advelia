@@ -1,15 +1,15 @@
 import React from 'react';
-import { Container, Grid, Paper, Typography } from '@material-ui/core';
+import { Container, Grid, Paper } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/styles';
 
-import { OUTCOME, SPECIES } from '../constants/ApiNaming';
+import { OUTCOME, SPECIES, ANIMALS_LIST } from '../constants/ApiNaming';
 import { sortByParam, findByParam } from '../utils'
 
 import TopBar from '../components/TopBar';
 import ChartContainer from './ChartContainer';
 import InputRadio from '../components/InputRadio';
-import SpeciesInput from '../components/SpeciesInput';
+import InputInline from '../components/InputInline';
 
 const styles = theme => ({
   container: {
@@ -50,8 +50,20 @@ function MainContainer(props) {
           </Grid>
           <Grid item md={9} sm={12}>
             <Paper className={`${classes.paper} ${classes.display}`}>
-              <Typography variant="h6">The number of <SpeciesInput selected={species ? species.value : null} onChange={props.changeSearchCriterion} />'s outcome compared to treatment length</Typography>
-              <ChartContainer height={400} width={800} fetch={props.fetchData} data={sortByParam(data, 'term')} />
+              <InputInline 
+                variant="h6" 
+                beforeText="The number of " 
+                afterText="'s outcome compared to treatment length" 
+                routeLabel={SPECIES}
+                options={ANIMALS_LIST}
+                selected={species ? species.value : null}
+                onChange={props.changeSearchCriterion} 
+                />
+              <ChartContainer 
+                height={400} 
+                width={800} 
+                fetch={props.fetchData} 
+                data={sortByParam(data, 'term')} />
             </Paper>
           </Grid>
         </Grid>
