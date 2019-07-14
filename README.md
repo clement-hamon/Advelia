@@ -3,11 +3,14 @@ The Adverse Event Listing Application
 
 The project uses create-react-app as a boilerplate (for more information: https://facebook.github.io/create-react-app/docs/getting-started).
 
+The app is up and running at the following address: https://advelia.herokuapp.com/
+
 ## scripts
 
 * npm run start : Runs the app in the development mode. Open http://localhost:3000 to view it in the browser.
 * npm run build : Builds the app for production to the build folder. It correctly bundles React in production mode and optimizes the build for the best performance. 
 * npm run test : Launches the test runner in the interactive watch mode. See the section about running tests for more information.
+* npm run deploy : launch a build and then launch a NodeJs procress exposed on port 9000 by default (to change it, setup your environement variable 'port' to the desired one).
 
 ## Architecture questions
 
@@ -36,8 +39,8 @@ Example: The user request a protected resources on the API (could be done when t
     THEN the request is sent with the access token in the http header.
     ELSE 
         IF a refresh token is found,
-        THEN an Access token is ask to the authorization server by sending the refresh token, 
-            and the request is sent with the access token in the http header.
+        THEN an Access token is asked to the authorization server by sending the refresh token, 
+            it is then saved (ex: localStorage) and sent with the requests in the http header.
         ELSE the user is redirect to the authentication page
 
 We could also add an authentication layer with a technology like OpenId Connect.
@@ -45,4 +48,8 @@ We could also add an authentication layer with a technology like OpenId Connect.
 
 ### E. What strategy would you adopt to monitor this API?
 
-Check the domain origin of the request
+Check the domain origin of the request.
+Define a policy regarding the data consumption.
+Cache some responses.
+Load balance our API server in order to insure high reliablility.
+
