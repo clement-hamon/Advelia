@@ -8,7 +8,7 @@ import { sortByParam, findByParam } from '../utils'
 
 import TopBar from '../components/TopBar';
 import ChartContainer from './ChartContainer';
-import OutcomeInput from '../components/OutcomeInput';
+import InputRadio from '../components/InputRadio';
 import SpeciesInput from '../components/SpeciesInput';
 
 const styles = theme => ({
@@ -39,7 +39,13 @@ function MainContainer(props) {
         <Grid container spacing={3}>
           <Grid item md={3} sm={12}>
             <Paper className={classes.paper}>
-              <OutcomeInput selected={outcome ? outcome.value : null} onChange={props.changeSearchCriterion} />
+              <InputRadio 
+                selected={outcome ? outcome.value : null} 
+                onChange={props.changeSearchCriterion} 
+                title={'Outcome'}
+                labels={['OnGoing', 'Recovered', 'Euthanized', 'Died']}
+                routeLabel={OUTCOME}
+                />
             </Paper>
           </Grid>
           <Grid item md={9} sm={12}>

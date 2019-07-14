@@ -5,6 +5,9 @@ import advelia from '../advelia.png';
 import PropTypes from 'prop-types';
 
 const styles = theme => ({
+  appBar: {
+    backgroundColor: '#1a1d2d'
+  },
   logo: {
     height: '50px',
   },
@@ -20,7 +23,7 @@ const styles = theme => ({
 function TopBar(props) {
   const {classes} = props;
   return (
-    <AppBar position="static" color="primary">
+    <AppBar position="static" className={classes.appBar}>
       <Toolbar className={classes.container}>
         <img className={classes.logo} src={advelia} alt="Logo" />
         <Typography variant="h3" color="inherit" className={classes.title}>

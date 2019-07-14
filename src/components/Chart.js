@@ -5,7 +5,7 @@ import {
 // import { Typography } from '@material-ui/core';
 
 export default function Chart(props) {
-  const { data, width, height } = props;
+  const { data, width, height, color} = props;
   return (
     <ResponsiveContainer>
       <BarChart
@@ -21,7 +21,7 @@ export default function Chart(props) {
         <YAxis />
         <Tooltip />
         <Legend />
-        <Bar dataKey="count" fill="#3F51B5" />
+        <Bar dataKey="count" fill={color ? color : "#3F51B5"} />
       </BarChart>
     </ResponsiveContainer>
   );
