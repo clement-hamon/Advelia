@@ -4,13 +4,14 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/styles';
 
 import { OUTCOME, SPECIES, IS_CROSSBRED, ANIMALS_LIST } from '../constants/ApiNaming';
-import { sortByParam, findByParam } from '../utils'
+import { sortByParam, findByParam, findWithPredicateByParam, findAverage } from '../utils'
 
 import TopBar from '../components/TopBar';
 import ChartContainer from './ChartContainer';
 import InputRadio from '../components/InputRadio';
 import InputInline from '../components/InputInline';
 import InputSwitchChoice from '../components/InputSwitchChoice';
+import Sticker from '../components/Sticker';
 
 const styles = theme => ({
   container: {
@@ -24,6 +25,13 @@ const styles = theme => ({
   display: {
     minHeight: '400px',
     height: '400px'
+  },
+  sticker: {
+    padding: '10px'
+  },
+  stickerContent: {
+    textAlign: 'center',
+    padding: '20px'
   }
 });
 
@@ -34,6 +42,9 @@ function MainContainer(props) {
   const outcome = findByParam(searchCriterion, 'key', OUTCOME);
   const species = findByParam(searchCriterion, 'key', SPECIES);
   const isCrossBred = findByParam(searchCriterion, 'key', IS_CROSSBRED);
+  const max = data.length > 0 ? findWithPredicateByParam(data, 'count', (curr, prev) => curr > prev) : 0;
+  const min = data.length > 0 ? findWithPredicateByParam(data, 'count', (curr, prev) => curr < prev) : 0;
+  const average = data.length > 0 ? findAverage(data) : 0;
 
   return (
     <React.Fragment>
@@ -58,7 +69,7 @@ function MainContainer(props) {
                 value={isCrossBred ? isCrossBred.value : false}
                 onChange={props.changeSearchCriterion}
                 routeLabel={IS_CROSSBRED}
-               />
+              />
             </Paper>
           </Grid>
           <Grid item md={9} sm={12}>
@@ -78,6 +89,17 @@ function MainContainer(props) {
                 fetch={props.fetchData}
                 data={sortByParam(data, 'term')} />
             </Paper>
+            <Grid container spacing={3}>
+              <Grid item xs={3}>
+                <Sticker title="max" content={max.count ? max.count : null} />
+              </Grid>
+              <Grid item xs={3}>
+                <Sticker title="min" content={min.count ? min.count : null} />
+              </Grid>
+              <Grid item xs={3}>
+                <Sticker title="average" content={average ? average : null} />
+              </Grid>
+            </Grid>
           </Grid>
         </Grid>
       </Container>
